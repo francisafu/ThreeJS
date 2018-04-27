@@ -3,18 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <title>ThreeJSTest</title>
-    <style>canvas{width:100%;height:100%}</style>
     <script src="../three.js-master/build/three.js"></script>
     <style type="text/css">
         div#canvas-frame{
-            border: none;
-            cursor: pointer;
-            width: 100%;
-            height: 600px;
-            background-color: #eeeeee;
+            border:none;
+            cursor:pointer;
+            width:100%;
+            height:600px;
+            background-color: #EEEEEE;
         }
     </style>
-    <script>
+    <script type="text/javascript">
         var renderer;
         function initThree() {
             width = document.getElementById('canvas-frame').clientWidth;
@@ -53,24 +52,22 @@
 
         var cube;
         function initObject() {
-
             var geometry = new THREE.Geometry();
-            var material = new THREE.LineBasicMaterial( { vertexColors: THREE.VertexColors} );
-            var color1 = new THREE.Color( 0x444444 ), color2 = new THREE.Color( 0xFF0000 );
-            var p1 = new THREE.Vector3( -100, 0, 100 );
-            var p2 = new THREE.Vector3(  100, 0, -100 );
-            geometry.vertices.push(p1);
-            geometry.vertices.push(p2);
-            geometry.colors.push( color1, color2 );
-            var line = new THREE.Line( geometry, material, THREE.LineSegments);
-            scene.add(line);
-        }
+            geometry.vertices.push( new THREE.Vector3( - 500, 0, 0 ) );
+            geometry.vertices.push( new THREE.Vector3( 500, 0, 0 ) );
 
-        function render()
-        {
-            renderer.clear();
-            renderer.render(scene, camera);
-            requestAnimationFrame(render);
+            for ( var i = 0; i <= 20; i ++ ) {
+
+                var line = new THREE.Line( geometry, new THREE.LineBasicMaterial( { color: 0x000000, opacity: 0.2 } ) );
+                line.position.z = ( i * 50 ) - 500;
+                scene.add( line );
+
+                var line = new THREE.Line( geometry, new THREE.LineBasicMaterial( { color: 0x000000, opacity: 0.2 } ) );
+                line.position.x = ( i * 50 ) - 500;
+                line.rotation.y = 90 * Math.PI / 180;
+                scene.add( line );
+
+            }
         }
 
         function threeStart() {
@@ -79,12 +76,13 @@
             initScene();
             initLight();
             initObject();
-            render;
+            renderer.clear();
+            renderer.render(scene, camera);
         }
 
     </script>
 </head>
 <body onload="threeStart();">
-    <div id="canvas-frame"></div>
+<div id="canvas-frame"></div>
 </body>
 </html>
