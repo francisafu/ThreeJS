@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<!--OBJLoader测试-->
+<html lang="en">
+<head>
+    <title>Js Lib Test</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <script type="text/javascript" src="three.js"></script>
+    <script type="text/javascript" src="OBJLoader.js"></script>
+    <script type="text/javascript" src="ModelLoader.js"></script>
+    <style>
+        #SubFrame {
+            width: 300px;
+            height: 400px;
+            border: 1px solid black;
+            margin: 100px;
+            padding: 0px;
+            position: static; /* fixed or static */
+            top: 100px;
+            left: 100px;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+<div id="SubFrame"></div>
+
+<script>
+    let objPosition = new THREE.Vector3(0, 0, 0);
+    let objRotation = new THREE.Euler(0, 1, 0);
+    let cameraPosition = new THREE.Vector3(0, 200, 250);
+    let spotLightPosition = new THREE.Vector3(75, 100, 75);
+    InitAll('../model/123.jpg', '../model/Sofa.OBJ', 1920, 1080, objRotation, objPosition, cameraPosition, spotLightPosition, 0.8, 1);
+</script>
+</body>
+</html>
