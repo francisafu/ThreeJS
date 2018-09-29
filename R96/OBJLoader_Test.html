@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<!--GLTFLoader测试-->
+<html lang="en">
+<head>
+    <title>GLTFLoader Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <script type="text/javascript" src="three.js"></script>
+    <script type="text/javascript" src="GLTFLoader.js"></script>
+    <script type="text/javascript" src="dat.gui.js"></script>
+    <style>
+        #SubFrame {
+            width: 300px;
+            height: 400px;
+            border: 1px solid black;
+            margin: 100px;
+            padding: 0px;
+            position: static; /* fixed or static */
+            top: 100px;
+            left: 100px;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+<div id="SubFrame"></div>
+
+<script type="text/javascript">
+
+
+    //TODO: Finish interface of variables
+
+    //Initial variable
+    var container;
+    var camera, scene, renderer;
+    var gltfMesh, planeH, planeV, axes;
+    var ambientLight, spotLight;
+    init();
+    animate();
+
+    function init() {
+
+        //Container
+        container = document.createElement('div');
+        //var container = document.getElementById('SubFrame');
+        document.body.appendChild(container); //Comment this line if use 'SubFrame'
+
+        // Scene
+        scene = new THREE.Scene();
+
+        //Camera
+        camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 2000);
+        scene.add(camera);
+
+        //Light
+        ambientLight = new THREE.AmbientLight();
+        scene.add(ambientLight);
+        spotLight = new THREE.SpotLight();
+        //spotLight.position.set(75, 100, 75);
+        spotLight.castShadow = true;
+        spotLight.shadow.bias = 0.0001;
+        spotLight.shadow.mapSize.width = 2048;
+        spotLight.shadow.mapSize.height = 2048;
+        scene.add(spotLight);
+
+        //Axes
+        axes = new THREE.AxesHelper(200);
+        scene.add(axes);
+
+        //PlaneH
+        var planeGeometry = new THREE.PlaneGeometry(900, 580);
+        var planeMaterial = new THREE.MeshLambertMaterial({color: 0xffffff});
+        planeH = new THREE.Mesh(planeGeometry, planeMaterial);
+        var r = new THREE.Euler(-0.5 * Math.PI, 0, 0);
+        planeH.rotation.copy(r);
+        var p = new THREE.Vector3(0, 0, -100);
+        planeH.position.copy(p);
+        planeH.receiveShadow = true;
+        //console.log(planeH);
+        scene.add(planeH);
+
+        //planeV
+        planeV = new THREE.Mesh(planeGeometry, planeMaterial);
+        planeV.rotation.x = 0;
+        planeV.position.x = 0;
+        planeV.position.y = planeV.geometry.parameters.height / 2;
+        planeV.position.z = 0;
+        //scene.add(planeV);
+
+        //Texture
+        var texture = new THREE.TextureLoader().load('../model/OBJ/123.jpg');
+        var material = new THREE.MeshLambertMaterial({map: texture});
+
+        // Model
+        let onProgress = function (xhr) {
+            gltfMesh = null;
+        };
+        let onError = function (xhr) {
+            gltfMesh = null;
+            console.error(xhr)
+        };
+        let loader = new THREE.GLTFLoader();
+        loader.load('../model/glTF/zhentou.gltf', function (gltf) {
+            gltf.scene.traverse(function (child) {
+                if (child.isMesh) {
+                    /*if(child.name==="Ground_plane"){
+                        child.visible=false;
+                    }
+                    console.log(child.id + ":" + child.name);
+                    child.material = material;
+                    child.castShadow = true;*/
+                }
+            });
+            gltfMesh = gltf.scene;
+        }, onProgress, onError);
+
+        //Renderer
+        renderer = new THREE.WebGLRenderer();
+        renderer.setPixelRatio(window.devicePixelRatio);
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setClearColor(0xEEEEEE, 1.0);
+        renderer.shadowMap.enabled = true;
+        container.appendChild(renderer.domElement);
+
+        //Window Resize Handle
+        window.addEventListener('resize', onWindowResize, false);
+    }
+
+    //Window Resize
+    function onWindowResize() {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+    }
+
+
+    var controls = new function () {
+        this.gltfMeshPositionX = 0;
+        this.gltfMeshPositionY = 0;
+        this.gltfMeshPositionZ = 0;
+        this.gltfMeshRotationX = 0;
+        this.gltfMeshRotationY = 0;
+        this.gltfMeshRotationZ = 0;
+        this.cameraPositionX = 0;
+        this.cameraPositionY = 200;
+        this.cameraPositionZ = 250;
+        this.ambientLightIntensity = 0.8;
+        this.spotLightPositionX = 75;
+        this.spotLightPositionY = 100;
+        this.spotLightPositionZ = 75;
+        this.spotLightIntensity = 1;
+    };
+
+    var gui = new dat.GUI();
+    gui.add(controls, 'gltfMeshPositionX', 0, 100);
+    gui.add(controls, 'gltfMeshPositionY', 0, 100);
+    gui.add(controls, 'gltfMeshPositionZ', 0, 100);
+    gui.add(controls, 'gltfMeshRotationX', 0, 2 * Math.PI);
+    gui.add(controls, 'gltfMeshRotationY', 0, 2 * Math.PI);
+    gui.add(controls, 'gltfMeshRotationZ', 0, 2 * Math.PI);
+    gui.add(controls, 'cameraPositionX', -500, 500);
+    gui.add(controls, 'cameraPositionY', -500, 500);
+    gui.add(controls, 'cameraPositionZ', -500, 500);
+    gui.add(controls, 'ambientLightIntensity', 0, 1);
+    gui.add(controls, 'spotLightPositionX', 0, 200);
+    gui.add(controls, 'spotLightPositionY', 0, 200);
+    gui.add(controls, 'spotLightPositionZ', 0, 200);
+    gui.add(controls, 'spotLightIntensity', 0, 1);
+
+    //Animate Refresh
+    function animate() {
+        requestAnimationFrame(animate);
+        render();
+    }
+
+    //Render
+    function render() {
+        if (gltfMesh != null) {
+            scene.add(gltfMesh);
+            gltfMesh.position.x = controls.gltfMeshPositionX;
+            gltfMesh.position.y = controls.gltfMeshPositionY;
+            gltfMesh.position.z = controls.gltfMeshPositionZ;
+            gltfMesh.rotation.x = controls.gltfMeshRotationX;
+            gltfMesh.rotation.y = controls.gltfMeshRotationY;
+            gltfMesh.rotation.z = controls.gltfMeshRotationZ;
+            camera.position.x = controls.cameraPositionX;
+            camera.position.y = controls.cameraPositionY;
+            camera.position.z = controls.cameraPositionZ;
+            camera.lookAt(scene.position);
+            ambientLight.intensity = controls.ambientLightIntensity;
+            spotLight.position.x = controls.spotLightPositionX;
+            spotLight.position.y = controls.spotLightPositionY;
+            spotLight.position.z = controls.spotLightPositionZ;
+            spotLight.intensity = controls.spotLightIntensity;
+        }
+        renderer.render(scene, camera);
+    }
+</script>
+
+</body>
+</html>
