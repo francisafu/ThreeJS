@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<style type="text/css">
+		.mui-switch {
+			width: 50px;
+			height: 25px;
+			position: relative;
+			left: 116px;
+			top: 6px;
+			border: 1px solid #dfdfdf;
+			background-color: #fdfdfd;
+			box-shadow: #dfdfdf 0 0 0 0 inset;
+			border-radius: 20px;
+			background-clip: content-box;
+			display: inline-block;
+			-webkit-appearance: none;
+			user-select: none;
+			outline: none;
+		}
+		
+		.mui-switch:before {
+			content: '';
+			width: 28px;
+			height: 23px;
+			position: absolute;
+			top: 0px;
+			left: 0;
+			border-radius: 20px;
+			background-color: #fff;
+			box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+		}
+		
+		.mui-switch:checked {
+			border-color: #64bd63;
+			box-shadow: #64bd63 0 0 0 16px inset;
+			background-color: #64bd63;
+		}
+		
+		.mui-switch:checked:before {
+			left: 21px;
+		}
+		
+		.mui-switch.mui-switch-animbg {
+			transition: background-color ease 0.4s;
+		}
+		
+		.mui-switch.mui-switch-animbg:before {
+			transition: left 0.3s;
+		}
+		
+		.mui-switch.mui-switch-animbg:checked {
+			box-shadow: #dfdfdf 0 0 0 0 inset;
+			background-color: #64bd63;
+			transition: border-color 0.4s, background-color ease 0.4s;
+		}
+		
+		.mui-switch.mui-switch-animbg:checked:before {
+			transition: left 0.3s;
+		}
+		
+		.mui-switch.mui-switch-anim {
+			transition: border cubic-bezier(0, 0, 0, 1) 0.4s, box-shadow cubic-bezier(0, 0, 0, 1) 0.4s;
+		}
+		
+		.mui-switch.mui-switch-anim:before {
+			transition: left 0.3s;
+		}
+		
+		.mui-switch.mui-switch-anim:checked {
+			box-shadow: #64bd63 0 0 0 16px inset;
+			background-color: #64bd63;
+			transition: border ease 0.4s, box-shadow ease 0.4s, background-color ease 1.2s;
+		}
+		
+		.mui-switch.mui-switch-anim:checked:before {
+			transition: left 0.3s;
+		}
+		
+		.bigbox {
+			width: 1200px;
+			margin: 0 auto;
+			overflow: hidden;
+		}
+		
+		.bigbox .list {
+			width: 250px;
+			float: left;
+			margin-left: 40px;
+			height: 250px;
+			border: 1px solid lightgray;
+			margin-top: 30px;
+			margin-bottom: 10px;
+		}
+		
+		.listImg img {
+			width: 200px;
+			display: block;
+			margin: 0 auto;
+			background-color: lightgray;
+			padding: 30px 25px;
+		}
+		
+		.listName {
+			font-size: 15px;
+			color: dimgray;
+			padding-left: 14px;
+		}
+	</style>
+
+	<body>
+		<div class="bigbox">
+			<div class="list">
+				<div class="listImg"  id="list1">
+					<img src="http://pic.58pic.com/58pic/13/04/21/31D58PICVAH.jpg">
+				</div>
+				<span class="listName">
+				MuiList
+			</span>
+				<label><input class="mui-switch mui-switch-animbg" type="checkbox" checked></label>
+			</div>
+			<div class="list">
+				<div class="listImg"  id="list2">
+					<img src="http://pic.58pic.com/58pic/13/04/21/31D58PICVAH.jpg">
+				</div>
+				<span class="listName">
+				MuiList
+			</span>
+				<label><input class="mui-switch mui-switch-animbg" type="checkbox" checked></label>
+			</div>
+			<div class="list">
+				<div class="listImg"  id="list3">
+					<img src="http://pic.58pic.com/58pic/13/04/21/31D58PICVAH.jpg">
+				</div>
+				<span class="listName">
+				MuiList
+			</span>
+				<label><input class="mui-switch mui-switch-animbg" type="checkbox" checked></label>
+			</div>
+			<div class="list">
+				<div class="listImg"  id="list4">
+					<img src="http://pic.58pic.com/58pic/13/04/21/31D58PICVAH.jpg">
+				</div>
+				<span class="listName">
+				MuiList
+			</span>
+				<label><input class="mui-switch mui-switch-animbg" type="checkbox" checked></label>
+			</div>
+			<div class="list">
+				<div class="listImg"  id="list5">
+					<img src="http://pic.58pic.com/58pic/13/04/21/31D58PICVAH.jpg">
+				</div>
+				<span class="listName">
+				MuiList
+			</span>
+				<label><input class="mui-switch mui-switch-animbg" type="checkbox" checked></label>
+			</div>
+			<div class="list">
+				<div class="listImg"  id="list6">
+					<img src="http://pic.58pic.com/58pic/13/04/21/31D58PICVAH.jpg">
+				</div>
+				<span class="listName">
+				MuiList
+			</span>
+				<label><input class="mui-switch mui-switch-animbg" type="checkbox" checked></label>
+			</div>
+			<div class="list">
+				<div class="listImg"  id="list7">
+					<img src="http://pic.58pic.com/58pic/13/04/21/31D58PICVAH.jpg">
+				</div>
+				<span class="listName">
+				MuiList
+			</span>
+				<label><input class="mui-switch mui-switch-animbg" type="checkbox" checked></label>
+			</div>
+			<div class="list">
+				<div class="listImg"   id="list8">
+					<img src="http://pic.58pic.com/58pic/13/04/21/31D58PICVAH.jpg">
+				</div>
+				<span class="listName">
+				MuiList
+			</span>
+				<label><input class="mui-switch mui-switch-animbg" type="checkbox" checked></label>
+			</div>
+			<div class="list">
+				<div class="listImg"  id="list9">
+					<img src="http://pic.58pic.com/58pic/13/04/21/31D58PICVAH.jpg">
+				</div>
+				<span class="listName">
+				MuiList
+			</span>
+				<label><input class="mui-switch mui-switch-animbg" type="checkbox" checked></label>
+			</div>
+			<div class="list">
+				<div class="listImg"  id="list10">
+					<img src="http://pic.58pic.com/58pic/13/04/21/31D58PICVAH.jpg">
+				</div>
+				<span class="listName">
+				MuiList
+			</span>
+				<label><input class="mui-switch mui-switch-animbg" type="checkbox" checked></label>
+			</div>
+			<div class="list">
+				<div class="listImg"  id="list11">
+					<img src="http://pic.58pic.com/58pic/13/04/21/31D58PICVAH.jpg">
+				</div>
+				<span class="listName">
+				MuiList
+			</span>
+				<label><input class="mui-switch mui-switch-animbg" type="checkbox" checked></label>
+			</div>
+			<div class="list">
+				<div class="listImg"  id="list12">
+					<img src="http://pic.58pic.com/58pic/13/04/21/31D58PICVAH.jpg">
+				</div>
+				<span class="listName">
+				MuiList
+			</span>
+				<label><input class="mui-switch mui-switch-animbg" type="checkbox" checked></label>
+			</div>
+			<div class="list">
+				<div class="listImg"  id="list13">
+					<img src="http://pic.58pic.com/58pic/13/04/21/31D58PICVAH.jpg">
+				</div>
+				<span class="listName">
+				MuiList
+			</span>
+				<label><input class="mui-switch mui-switch-animbg" type="checkbox" checked></label>
+			</div>
+			<div class="list">
+				<div class="listImg"  id="list14">
+					<img src="http://pic.58pic.com/58pic/13/04/21/31D58PICVAH.jpg">
+				</div>
+				<span class="listName">
+				MuiList
+			</span>
+				<label><input class="mui-switch mui-switch-animbg" type="checkbox" checked></label>
+			</div>
+			<div class="list">
+				<div class="listImg"  id="list15">
+					<img src="http://pic.58pic.com/58pic/13/04/21/31D58PICVAH.jpg">
+				</div>
+				<span class="listName">
+				MuiList
+			</span>
+				<label><input class="mui-switch mui-switch-animbg" type="checkbox" checked></label>
+			</div>
+			<div class="list">
+				<div class="listImg"  id="list16">
+					<img src="http://pic.58pic.com/58pic/13/04/21/31D58PICVAH.jpg">
+				</div>
+				<span class="listName">
+				MuiList
+			</span>
+				<label><input class="mui-switch mui-switch-animbg" type="checkbox" checked></label>
+			</div>
+			<div class="list">
+				<div class="listImg"  id="list17">
+					<img src="http://pic.58pic.com/58pic/13/04/21/31D58PICVAH.jpg">
+				</div>
+				<span class="listName">
+				MuiList
+			</span>
+				<label><input class="mui-switch mui-switch-animbg" type="checkbox" checked></label>
+			</div>
+			<div class="list">
+				<div class="listImg"  id="list18">
+					<img src="http://pic.58pic.com/58pic/13/04/21/31D58PICVAH.jpg">
+				</div>
+				<span class="listName">
+				MuiList
+			</span>
+				<label><input class="mui-switch mui-switch-animbg" type="checkbox" checked></label>
+			</div>
+			<div class="list">
+				<div class="listImg"  id="list19">
+					<img src="http://pic.58pic.com/58pic/13/04/21/31D58PICVAH.jpg">
+				</div>
+				<span class="listName">
+				MuiList
+			</span>
+				<label><input class="mui-switch mui-switch-animbg" type="checkbox" checked></label>
+			</div>
+			<div class="list">
+				<div class="listImg"  id="list20">
+					<img src="http://pic.58pic.com/58pic/13/04/21/31D58PICVAH.jpg">
+				</div>
+				<span class="listName">
+				MuiList
+			</span>
+				<label><input class="mui-switch mui-switch-animbg" type="checkbox" checked></label>
+			</div>
+
+		</div>
+
+	</body>
+
+</html>
