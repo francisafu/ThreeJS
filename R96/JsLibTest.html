@@ -18,7 +18,7 @@
             position: static; /* fixed or static */
             top: 100px;
             left: 100px;
-            display: none;
+            display: block;
         }
     </style>
 </head>
@@ -29,10 +29,10 @@
 
 <script>
     let objPosition = new THREE.Vector3(0, 0, 0);
-    let objRotation = new THREE.Euler(0, 1, 0);
-    let cameraPosition = new THREE.Vector3(0, 200, 250);
+    let objRotation = new THREE.Euler(0, 0, 0);
+    let cameraPosition = new THREE.Vector3(0, 50, 0);
     let spotLightPosition = new THREE.Vector3(75, 100, 75);
-    InitAll('../model/OBJ/123.jpg', '../model/glTF/zhentou.gltf', 1920, 1080, objRotation, objPosition, cameraPosition, spotLightPosition, 0.8, 1);
+    InitAll('SubFrame', '../model/OBJ/123.jpg', '../model/glTF/zhentou.gltf', 300, 400, objRotation, objPosition, cameraPosition, spotLightPosition, 0.8, 1);
 </script>
 </body>
 </html>

@@ -28,8 +28,8 @@
 
 <script>
     if (!Detector.webgl) Detector.addGetWebGLMessage();
-    var container, stats, controls;
-    var camera, scene, renderer, light;
+    let container, stats, controls;
+    let camera, scene, renderer, light;
     init();
     animate();
 
@@ -55,7 +55,7 @@
         light.position.set(0, 1, 0);
         scene.add(light);
         // model
-        var loader = new THREE.GLTFLoader();
+        let loader = new THREE.GLTFLoader();
         loader.load('../model/glTF/zhentou.gltf', function (gltf) {
             gltf.scene.traverse(function (child) {
                 if (child.isMesh) {

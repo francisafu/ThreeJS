@@ -1,12 +1,11 @@
 //A loader library of 3D models, using THREE.JS.
 
 //Initial container
-//TODO: Get container parameters
-function InitContainer() {
-    let container = document.createElement('div');
-    //var container = document.getElementById('SubFrame');
+function InitContainer(id) {
+    //let container = document.createElement('div');
+    var container = document.getElementById(id);
     //Comment this line if use 'SubFrame'
-    document.body.appendChild(container);
+    //document.body.appendChild(container);
     return container
 }
 
@@ -45,6 +44,7 @@ function LoadTexture(imgPath) {
 }
 
 //Initial object mesh with texture
+//TODO: OnProgress Function
 function InitGLTF(scene, gltfPath, gltfPosition, gltfRotation, material) {
     let gltfMesh = null;
     let onProgress = function (xhr) {
@@ -55,15 +55,20 @@ function InitGLTF(scene, gltfPath, gltfPosition, gltfRotation, material) {
     let loader = new THREE.GLTFLoader();
     loader.load(gltfPath, function (gltf) {
         gltf.scene.traverse(function (child) {
-            if (child.isMesh) {
-                /*if(child.name==="Ground_plane"){
-                    child.visible=false;
+                if (child.isMesh) {
+                    if (child.isMesh) {
+                        if (child.name === "Ground_plane") {
+                            child.visible = false;
+                        }
+                        if (child.name === "预设值") {
+                            //child.material = material;
+                        }
+                        child.castShadow = true;
+
+                    }
                 }
-                console.log(child.id + ":" + child.name);
-                child.material = material;
-                child.castShadow = true;*/
             }
-        });
+        );
         gltfMesh = gltf.scene;
         gltfMesh.position.copy(gltfPosition);
         gltfMesh.rotation.copy(gltfRotation);
@@ -111,9 +116,9 @@ function InitRenderer(windowWidth, windowHeight, container) {
 }
 
 //Initial All
-function InitAll(texturePath, objPath, width, height, objRotation, objPosition, cameraPosition, spotLightPosition,
+function InitAll(id, texturePath, objPath, width, height, objRotation, objPosition, cameraPosition, spotLightPosition,
                  ambientLightIntensity, spotLightIntensity) {
-    let container = InitContainer();
+    let container = InitContainer(id);
     let scene = InitScene();
     InitPlaneH(scene);
     let material = LoadTexture(texturePath);
@@ -124,13 +129,13 @@ function InitAll(texturePath, objPath, width, height, objRotation, objPosition, 
     let renderer = InitRenderer(width, height, container);
     Animate();
 
-    //Animate
+//Animate
     function Animate() {
         requestAnimationFrame(Animate);
         render();
     }
 
-    //Render
+//Render
     function render() {
         renderer.render(scene, camera);
     }
