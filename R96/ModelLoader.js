@@ -3,16 +3,14 @@
 //Initial container
 function InitContainer(id) {
     //let container = document.createElement('div');
-    var container = document.getElementById(id);
+    return document.getElementById(id);
     //Comment this line if use 'SubFrame'
     //document.body.appendChild(container);
-    return container
 }
 
 //Initial scene
 function InitScene() {
-    let scene = new THREE.Scene();
-    return scene;
+    return new THREE.Scene();
 }
 
 //Initial horizontal plane
@@ -26,16 +24,16 @@ function InitPlaneH(scene) {
     scene.add(planeH);
 }
 
-//Initial vertical plane
-function InitPlaneV(scene) {
-    let planeGeometry = new THREE.PlaneGeometry(900, 580);
-    let planeMaterial = new THREE.MeshLambertMaterial({color: 0xffffff});
-    let planeV = new THREE.Mesh(planeGeometry, planeMaterial);
-    planeV.rotation.x = 0;
-    planeV.position.set(0, planeV.geometry.parameters.height / 2, 0);
-    planeV.receiveShadow = true;
-    scene.add(planeV);
-}
+// Initial vertical plane
+// function InitPlaneV(scene) {
+//     let planeGeometry = new THREE.PlaneGeometry(900, 580);
+//     let planeMaterial = new THREE.MeshLambertMaterial({color: 0xffffff});
+//     let planeV = new THREE.Mesh(planeGeometry, planeMaterial);
+//     planeV.rotation.x = 0;
+//     planeV.position.set(0, planeV.geometry.parameters.height / 2, 0);
+//     planeV.receiveShadow = true;
+//     scene.add(planeV);
+// }
 
 //Load texture
 function LoadTexture(imgPath) {
@@ -45,7 +43,7 @@ function LoadTexture(imgPath) {
 
 //Initial object mesh with texture
 //TODO: OnProgress Function
-function InitGLTF(scene, gltfPath, gltfPosition, gltfRotation, material) {
+function InitGLTF(scene, gltfPath, gltfPosition, gltfRotation, gltfScale, material) {
     let gltfMesh = null;
     let onProgress = function (xhr) {
     };
@@ -57,11 +55,8 @@ function InitGLTF(scene, gltfPath, gltfPosition, gltfRotation, material) {
         gltf.scene.traverse(function (child) {
                 if (child.isMesh) {
                     if (child.isMesh) {
-                        if (child.name === "Ground_plane") {
-                            child.visible = false;
-                        }
-                        if (child.name === "预设值") {
-                            //child.material = material;
+                        if (child.name === "Replaceable") {
+                            child.material = material;
                         }
                         child.castShadow = true;
 
@@ -72,6 +67,7 @@ function InitGLTF(scene, gltfPath, gltfPosition, gltfRotation, material) {
         gltfMesh = gltf.scene;
         gltfMesh.position.copy(gltfPosition);
         gltfMesh.rotation.copy(gltfRotation);
+        gltfMesh.scale.copy(gltfScale);
         scene.add(gltfMesh);
     }, onProgress, onError);
 }
@@ -116,13 +112,14 @@ function InitRenderer(windowWidth, windowHeight, container) {
 }
 
 //Initial All
-function InitAll(id, texturePath, objPath, width, height, objRotation, objPosition, cameraPosition, spotLightPosition,
+function InitAll(id, texturePath, meshPath, width, height, meshRotation, meshPosition, meshScale, cameraPosition, spotLightPosition,
                  ambientLightIntensity, spotLightIntensity) {
     let container = InitContainer(id);
     let scene = InitScene();
     InitPlaneH(scene);
     let material = LoadTexture(texturePath);
-    InitGLTF(scene, objPath, objPosition, objRotation, material);
+    let scale = new THREE.Vector3(meshScale, meshScale, meshScale);
+    InitGLTF(scene, meshPath, meshPosition, meshRotation, scale, material);
     let camera = InitCamera(scene, width, height, cameraPosition);
     InitAmbientLight(scene, ambientLightIntensity);
     InitSpotLight(scene, spotLightPosition, spotLightIntensity);

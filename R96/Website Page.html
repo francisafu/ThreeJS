@@ -2,8 +2,12 @@
 <html>
 
 <head>
-    <meta charset="UTF-8">
-    <title></title>
+    <title>AI Simulation</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <script type="text/javascript" src="three.js"></script>
+    <script type="text/javascript" src="GLTFLoader.js"></script>
+    <script type="text/javascript" src="ModelLoader.js"></script>
 </head>
 <style type="text/css">
     .bigbox {
@@ -22,7 +26,7 @@
 
     .listImg img {
         width: 300px;
-        height:400px;
+        height: 400px;
         display: block;
         padding: 10px 25px 0px 25px;
     }
@@ -30,30 +34,48 @@
     .listName {
         font-size: 35px;
         color: dimgray;
-        padding-left: 135px;
+        padding-left: 115px;
     }
 </style>
 
 <body>
+<script>
+    let texture = '../model/OBJ/123.jpg';
+</script>
 <div class="bigbox">
+
     <div class="list">
         <div class="listImg" id="list1">
-            <img src="http://pic.58pic.com/58pic/13/04/21/31D58PICVAH.jpg">
+            <script>
+                let pillowMeshPosition = new THREE.Vector3(0, 0, 0);
+                let pillowMeshRotation = new THREE.Euler(0, 0, 0);
+                let pillowCameraPosition = new THREE.Vector3(0, 50, 0);
+                let pillowSpotLightPosition = new THREE.Vector3(75, 100, 75);
+                InitAll('list1', texture, '../model/glTF/pillow.gltf', 300, 400, pillowMeshRotation, pillowMeshPosition, 1, pillowCameraPosition, pillowSpotLightPosition, 0.8, 1);
+            </script>
         </div>
         <span class="listName">
 			枕头
         </span>
 
     </div>
+
     <div class="list">
         <div class="listImg" id="list2">
-            <img src="http://pic.58pic.com/58pic/13/04/21/31D58PICVAH.jpg">
+            <script>
+                let curtainMeshPosition = new THREE.Vector3(-35, 55, 80);
+                let curtainMeshRotation = new THREE.Euler(0.5, 1.56, -2);
+                let curtainCameraPosition = new THREE.Vector3(0, 380, 0);
+                let curtainSpotLightPosition = new THREE.Vector3(75, 315, 55);
+                InitAll('list2', texture, '../model/glTF/curtain.gltf', 300, 400, curtainMeshRotation, curtainMeshPosition, 0.5, curtainCameraPosition, curtainSpotLightPosition, 0.6, 1);
+            </script>
         </div>
         <span class="listName">
 			窗帘
         </span>
 
     </div>
+
     <div class="list">
         <div class="listImg" id="list3">
             <img src="http://pic.58pic.com/58pic/13/04/21/31D58PICVAH.jpg">
@@ -63,24 +85,39 @@
         </span>
 
     </div>
+
     <div class="list">
         <div class="listImg" id="list4">
-            <img src="http://pic.58pic.com/58pic/13/04/21/31D58PICVAH.jpg">
+            <script>
+                let towelMeshPosition = new THREE.Vector3(13, 10, 0);
+                let towelMeshRotation = new THREE.Euler(Math.PI, 0.03, 0);
+                let towelCameraPosition = new THREE.Vector3(0, 200, 0);
+                let towelSpotLightPosition = new THREE.Vector3(75, 100, 75);
+                InitAll('list4', texture, '../model/glTF/towel.gltf', 300, 400, towelMeshRotation, towelMeshPosition, 1, towelCameraPosition, towelSpotLightPosition, 0.8, 1);
+            </script>
         </div>
         <span class="listName">
             毛巾
         </span>
 
     </div>
+
     <div class="list">
         <div class="listImg" id="list5">
-            <img src="http://pic.58pic.com/58pic/13/04/21/31D58PICVAH.jpg">
+            <script>
+                let quiltMeshPosition = new THREE.Vector3(25, 0, 0);
+                let quiltMeshRotation = new THREE.Euler(0, 0, 0);
+                let quiltCameraPosition = new THREE.Vector3(0, 450, 0);
+                let quiltSpotLightPosition = new THREE.Vector3(135, -70, 140);
+                InitAll('list5', texture, '../model/glTF/quilt.gltf', 300, 400, quiltMeshRotation, quiltMeshPosition, 1, quiltCameraPosition, quiltSpotLightPosition, 0.8, 1);
+            </script>
         </div>
         <span class="listName">
             床单
         </span>
 
     </div>
+
     <div class="list">
         <div class="listImg" id="list6">
             <img src="http://pic.58pic.com/58pic/13/04/21/31D58PICVAH.jpg">
@@ -90,6 +127,7 @@
         </span>
 
     </div>
+
     <div class="list">
         <div class="listImg" id="list7">
             <img src="http://pic.58pic.com/58pic/13/04/21/31D58PICVAH.jpg">

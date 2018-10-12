@@ -30,8 +30,6 @@
 <script type="text/javascript">
 
 
-    //TODO: Finish interface of variables
-
     //Initial variable
     var container;
     var camera, scene, renderer;
@@ -102,20 +100,22 @@
             console.error(xhr)
         };
         let loader = new THREE.GLTFLoader();
-        loader.load('../model/glTF/qiangzhi.gltf', function (gltf) {
+        loader.load('../model/glTF/curtain.gltf', function (gltf) {
             gltf.scene.traverse(function (child) {
                 if (child.isMesh) {
                     console.log(child.id + ":" + child.name);
+                    console.log(child);
                     // if (child.name === "Ground_plane") {
                     //     child.visible = false;
                     // }
-                    // if (child.name === "预设值") {
-                    //     child.material = material;
+                    // if (child.name === "Replaceable") {
+                    child.material = material;
                     // }
                     child.castShadow = true;
                 }
             });
             gltfMesh = gltf.scene;
+            console.log(gltf);
         }, onProgress, onError);
 
         //Renderer
