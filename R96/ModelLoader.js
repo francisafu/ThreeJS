@@ -116,7 +116,10 @@ function InitAll(id, texturePath, meshPath, width, height, meshRotation, meshPos
                  ambientLightIntensity, spotLightIntensity) {
     let container = InitContainer(id);
     let scene = InitScene();
-    InitPlaneH(scene);
+    let reg=/wallpaper.gltf$/;
+    if(!reg.test(meshPath)){
+        InitPlaneH(scene);
+    }
     let material = LoadTexture(texturePath);
     let scale = new THREE.Vector3(meshScale, meshScale, meshScale);
     InitGLTF(scene, meshPath, meshPosition, meshRotation, scale, material);

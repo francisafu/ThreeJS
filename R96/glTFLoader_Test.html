@@ -100,17 +100,13 @@
             console.error(xhr)
         };
         let loader = new THREE.GLTFLoader();
-        loader.load('../model/glTF/curtain.gltf', function (gltf) {
+        loader.load('../model/glTF/wallpaper.gltf', function (gltf) {
             gltf.scene.traverse(function (child) {
                 if (child.isMesh) {
                     console.log(child.id + ":" + child.name);
-                    console.log(child);
-                    // if (child.name === "Ground_plane") {
-                    //     child.visible = false;
-                    // }
-                    // if (child.name === "Replaceable") {
+                    if (child.name === "Replaceable") {
                     child.material = material;
-                    // }
+                    }
                     child.castShadow = true;
                 }
             });

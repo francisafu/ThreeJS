@@ -24,7 +24,7 @@
         margin-bottom: 0px;
     }
 
-    .listImg img {
+    .listImg {
         width: 300px;
         height: 400px;
         display: block;
@@ -40,6 +40,7 @@
 
 <body>
 <script>
+    //TODO: Get texture function
     let texture = '../model/OBJ/123.jpg';
 </script>
 <div class="bigbox">
@@ -78,7 +79,13 @@
 
     <div class="list">
         <div class="listImg" id="list3">
-            <img src="http://pic.58pic.com/58pic/13/04/21/31D58PICVAH.jpg">
+            <script>
+                let bedMeshPosition = new THREE.Vector3(0, 10, 0);
+                let bedMeshRotation = new THREE.Euler(4.7, 0, 1.55);
+                let bedCameraPosition = new THREE.Vector3(0, 270, 0);
+                let bedSpotLightPosition = new THREE.Vector3(50, 170, -5);
+                InitAll('list3', texture, '../model/glTF/bed.gltf', 300, 400, bedMeshRotation, bedMeshPosition, 1, bedCameraPosition, bedSpotLightPosition, 0.8, 0.6);
+            </script>
         </div>
         <span class="listName">
             &nbsp;&nbsp;床
@@ -108,7 +115,7 @@
                 let quiltMeshPosition = new THREE.Vector3(25, 0, 0);
                 let quiltMeshRotation = new THREE.Euler(0, 0, 0);
                 let quiltCameraPosition = new THREE.Vector3(0, 450, 0);
-                let quiltSpotLightPosition = new THREE.Vector3(135, -70, 140);
+                let quiltSpotLightPosition = new THREE.Vector3(-5, -110, 0);
                 InitAll('list5', texture, '../model/glTF/quilt.gltf', 300, 400, quiltMeshRotation, quiltMeshPosition, 1, quiltCameraPosition, quiltSpotLightPosition, 0.8, 1);
             </script>
         </div>
@@ -123,17 +130,23 @@
             <img src="http://pic.58pic.com/58pic/13/04/21/31D58PICVAH.jpg">
         </div>
         <span class="listName">
-            墙纸
+            沙发
         </span>
 
     </div>
 
     <div class="list">
         <div class="listImg" id="list7">
-            <img src="http://pic.58pic.com/58pic/13/04/21/31D58PICVAH.jpg">
+            <script>
+                let wpMeshPosition = new THREE.Vector3(0, -90, 0);
+                let wpMeshRotation = new THREE.Euler(-0.1, 0, 0);
+                let wpCameraPosition = new THREE.Vector3(0, 70, 365);
+                let wpSpotLightPosition = new THREE.Vector3(75, 240, 75);
+                InitAll('list7', texture, '../model/glTF/wallpaper.gltf', 600, 300, wpMeshRotation, wpMeshPosition, 0.8, wpCameraPosition, wpSpotLightPosition, 0.8, 1);
+            </script>
         </div>
         <span class="listName">
-            沙发
+            墙纸
         </span>
     </div>
 
