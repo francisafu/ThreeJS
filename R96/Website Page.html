@@ -127,7 +127,13 @@
 
     <div class="list">
         <div class="listImg" id="list6">
-            <img src="http://pic.58pic.com/58pic/13/04/21/31D58PICVAH.jpg">
+            <script>
+                let sofaMeshPosition = new THREE.Vector3(0, -30, 0);
+                let sofaMeshRotation = new THREE.Euler(0, 1, 0);
+                let sofaCameraPosition = new THREE.Vector3(70, 110, 250);
+                let sofaSpotLightPosition = new THREE.Vector3(75, 350, 75);
+                InitAll('list6', texture, '../model/glTF/sofa.gltf', 300, 400, sofaMeshRotation, sofaMeshPosition, 1, sofaCameraPosition, sofaSpotLightPosition, 0.8, 1);
+            </script>
         </div>
         <span class="listName">
             沙发

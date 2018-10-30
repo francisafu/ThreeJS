@@ -15,7 +15,7 @@ function InitScene() {
 
 //Initial horizontal plane
 function InitPlaneH(scene) {
-    let planeGeometry = new THREE.PlaneGeometry(900, 580);
+    let planeGeometry = new THREE.PlaneGeometry(900, 900);
     let planeMaterial = new THREE.MeshLambertMaterial({color: 0xffffff});
     let planeH = new THREE.Mesh(planeGeometry, planeMaterial);
     planeH.rotation.x = -0.5 * Math.PI;
@@ -116,8 +116,9 @@ function InitAll(id, texturePath, meshPath, width, height, meshRotation, meshPos
                  ambientLightIntensity, spotLightIntensity) {
     let container = InitContainer(id);
     let scene = InitScene();
-    let reg=/wallpaper.gltf$/;
-    if(!reg.test(meshPath)){
+    let regwp=/wallpaper.gltf$/;
+    let regsf=/sofa.gltf$/;
+    if(!regwp.test(meshPath)&&!regsf.test(meshPath)){
         InitPlaneH(scene);
     }
     let material = LoadTexture(texturePath);

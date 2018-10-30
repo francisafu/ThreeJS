@@ -68,7 +68,7 @@
         scene.add(axes);
 
         //PlaneH
-        var planeGeometry = new THREE.PlaneGeometry(900, 580);
+        var planeGeometry = new THREE.PlaneGeometry(900, 900);
         var planeMaterial = new THREE.MeshLambertMaterial({color: 0xffffff});
         planeH = new THREE.Mesh(planeGeometry, planeMaterial);
         var r = new THREE.Euler(-0.5 * Math.PI, 0, 0);
@@ -100,7 +100,7 @@
             console.error(xhr)
         };
         let loader = new THREE.GLTFLoader();
-        loader.load('../model/glTF/wallpaper.gltf', function (gltf) {
+        loader.load('../model/glTF/sofa.gltf', function (gltf) {
             gltf.scene.traverse(function (child) {
                 if (child.isMesh) {
                     console.log(child.id + ":" + child.name);
